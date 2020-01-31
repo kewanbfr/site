@@ -10,7 +10,6 @@ define('WEBROOT_INVRS' , 'C:/wamp64/www/siteseul/webroot');
 
 require(CORE.DS.'includes.php');
 new Dispatcher();
-echo 'test git';
 ?>
 
 <?php if(Conf::$debug >= 1){ ?>
