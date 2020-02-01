@@ -31,10 +31,17 @@
 
 
             </li> 
-            <?php $pagesMenu = $this->request('Pages', 'getMenu'); ?>
+            <!--<?php /*$pagesMenu = $this->request('Pages', 'getMenu'); ?>
             <?php foreach($pagesMenu as $p): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo BASE_URL.'/pages/view/'.$p->id; ?>" ><?php echo $p->name; ?></a>
+                </li>                
+            <?php endforeach; ?><?php echo Router::url("posts/view/id:{$v->id}/slug:{$v->slug}") */?>-->
+
+            <?php $pagesMenu = $this->request('Pages', 'getMenu'); ?>
+            <?php foreach($pagesMenu as $p): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo Router::url("pages/view/id:{$p->id}/slug:{$p->slug}"); ?>" ><?php echo $p->name; ?></a>
                 </li>                
             <?php endforeach; ?>
 

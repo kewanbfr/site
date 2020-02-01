@@ -10,24 +10,33 @@ class PagesController extends Controller {
         $this->render('index');
     }*/
 
+    function index(){
+        $perPage = 3;
+        $this->loadModel('Post');
+        $condition = array('online' => 1,'type' => 'page');
+
+        $d['posts'] = $this->Post->find(array(
+            'conditions' => $condition,'limit' => ($perPage*($this->request->page-1)).','.$perPage
+        ));
+        $d['total'] = $this->Post->findCount($condition);
+        $d['page'] = ceil($d['total']/$perPage);
+        $this->set($d);
+    }
+
+    /**
+     * Permet d'afficher les pages une par une
+     */
     function view($id){
         if($id == NULL){
             $this->e404('Page Introuvable');
         }
         $this->loadModel('Post');
         $d['page'] = $this->Post->findFirst(array(
-            'conditions' => array(
-            'id' => $id,
-            )
+            'conditions' => array('online' => 1,'id' => $id,'type' => 'page')
         ));
         if(empty($d['page'])){
             $this->e404('Page Introuvable');
         }
-        
-        /*$d['pages'] = $this->Post->find(array(
-            'conditions' => array('type' => 'page')
-        ));*/
-
         $this->set($d);
     }
 
@@ -56,7 +65,7 @@ class PagesController extends Controller {
     }
 
     /**
-     * Permet d'éditer un article
+     * Permet d'éditer une page
      */
     function admin_edit($id = null){
         $this->loadModel('Post');
@@ -64,22 +73,24 @@ class PagesController extends Controller {
 
         if($this->request->data){
             if($this->Post->validates($this->request->data)){
-                //$this->Post->save($this->request->data, 'page');
-                $this->Session->setFlash('Le contenu à bien été modifié');
+                $datapost = $this->request->data;
+                $this->Post->save($this->request->data, 'page');
+                $article = '<a target="_blank" href="'.Router::url("pages/view/id:{$this->Post->id}/slug:{$datapost->slug}").'">Voir la Page<a>';
+                $this->Session->setFlash("Le contenu à bien été modifié : $article");
                 $id = $this->Post->id;
             }else {
-
+                $this->Session->setFlash('Merci de corriger vos informations','danger');
             }
-            
+        }else {
+            if($id){
+                $this->request->data = $this->Post->findFirst(array('conditions' => array('id'=>$id)));
+                $d['id'] = $id;
+            }
         }
-        if($id){
-            $this->request->data = $this->Post->findFirst(array('conditions' => array('id'=>$id)));
-            $d['id'] = $id;
-        }
+        
         $this->set($d);
         
     }
-
 
     /**
      * Permet de supprimer un article

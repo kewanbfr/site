@@ -1,7 +1,7 @@
 <?php
 class Conf{
 
-    static $debug = 1;
+    static $debug = 0;
 
     static $databases = array(
         'default' => array(
@@ -34,6 +34,8 @@ Router::prefix('cockpit', 'admin');
 //Router::connect('posts/:slug-:id', 'posts/view/id:(?P<id>[0-9])/slug:(?P<slug>[a-z0-9\-]+)');
 //Router::connect('/', 'posts/index');
 Router::connect('blog/:slug-:id', 'posts/view/id:([0-9]+)/slug:([a-z0-9\-]+)');
+Router::connect('tutoriel/:slug-:id', 'pages/view/id:([0-9]+)/slug:([a-z0-9\-]+)');
+
 //Router::connect('blog/:action', 'posts/:action');
 
 

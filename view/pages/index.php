@@ -4,7 +4,7 @@
 </div>--->
 <?php $title_for_layout = 'Actualitées - Mon site'; ?>
 <div class="page-header">
-    <h1>Actualitées du blog</h1>
+    <h1>Actualitées du page</h1>
     <hr>
 </div>
 <?php //debug($posts);
@@ -12,7 +12,7 @@
         <h2><?php echo $v->name; ?></h2>
         <?php echo $v->content; ?><br />
         <!--<p><a href="<?php //echo BASE_URL.'/posts/view/'.$v->id ?>">Lire la suite &rarr;</a></p>--->
-        <p><a href="<?php echo Router::url("posts/view/id:{$v->id}/slug:{$v->slug}"); ?>">Lire la suite &rarr;</a></p>
+        <p><a href="<?php echo Router::url("pages/view/id:{$v->id}/slug:{$v->slug}") ?>">Lire la suite &rarr;</a></p>
 
 <?php endforeach; ?>
 
