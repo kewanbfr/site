@@ -8,7 +8,7 @@ class Form{
         $this->controller = $controller;
     }
 
-    public function input($name, $label, $options=array()){
+    public function input($name, $label, $options=array(), $optionsExtra=array()){
         $error = false;
         $classError = '';
         $alertInfos = '';
@@ -34,8 +34,12 @@ class Form{
         $html = '';
                     
                     $attr = '';
+                    $attrExtr = '';
                     foreach ($options as $k => $v) {
                         $attr .= "$k=\"$v\"";
+                    }
+                    foreach ($optionsExtra as $k => $v) {
+                        $attrExtr .= "$k=\"$v\"";
                     }
                     if(!isset($options['type'])){
                         $html .= '
@@ -47,7 +51,7 @@ class Form{
                         $html .= '<div class="form-group">
                         <label class="form-label" for="input'.$name.'">'.$label.'</label>
                         <div class="input">';
-                        $html .= '<textarea class="form-control'.$classError.'" name="'.$name.'" id="input'.$name.'" '.$attr.'">'.$value.'</textarea>'.$alertInfos.'</div>';
+                        $html .= '<textarea class="form-control'.$classError.'" '.$attrExtr.' name="'.$name.'" id="input'.$name.'" '.$attr.'" >'.$value.'</textarea>'.$alertInfos.'</div>';
 
                     }elseif($options['type'] == 'submit'){
                         $html .= '<div class="input"><button type="submit" '.$attr.'>'.$label.'</button>';
@@ -61,7 +65,7 @@ class Form{
                         $html .= '
                         <div class="form-group form-check">
                         <label class="form-check-label'.$classError.'" for="'.$name.'">
-                        <input type="hidden" name="'.$name.'"  value="0"><input class="form-check-input" '.$attr.' id="'.$name.'" class="form-check-label" type="checkbox" name="'.$name.'" id="checkbox'.$name.'" value="1" '.(empty($value)?'':'checked').'>'.$label.'
+                        <input type="hidden" name="'.$name.'"  value="0"><input '.$attrExtr.' class="form-check-input" '.$attr.' id="'.$name.'" class="form-check-label" type="checkbox" name="'.$name.'" id="checkbox'.$name.'" value="1" '.(empty($value)?'':'checked').'>'.$label.'
                         </label>
                         </div>';
                     }

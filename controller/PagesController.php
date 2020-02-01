@@ -74,10 +74,13 @@ class PagesController extends Controller {
         if($this->request->data){
             if($this->Post->validates($this->request->data)){
                 $datapost = $this->request->data;
-                $this->Post->save($this->request->data, 'page');
-                $article = '<a target="_blank" href="'.Router::url("pages/view/id:{$this->Post->id}/slug:{$datapost->slug}").'">Voir la Page<a>';
+
+                $this->request->data->type = 'page';
+                $this->Post->save($this->request->data);
+                $article = '<a target="_blank" href="'.Router::url("pages/view/id:{$this->Post->id}/slug:{$datapost->slug}").'">Voir l\'article<a>';
                 $this->Session->setFlash("Le contenu à bien été modifié : $article");
-                $id = $this->Post->id;
+                //$id = $this->Post->id;
+                $this->redirect('admin/pages/index');
             }else {
                 $this->Session->setFlash('Merci de corriger vos informations','danger');
             }
@@ -91,6 +94,7 @@ class PagesController extends Controller {
         $this->set($d);
         
     }
+
 
     /**
      * Permet de supprimer un article

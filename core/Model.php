@@ -122,15 +122,23 @@ class Model{
         $this->db->query($sql);
     }
 
-    public function save($data, $type){
+    public function save($data, $type = null){
         $key = $this->primaryKey;
         $fields = array();
         $d = array();
-        //if(isset($data->$key)) unset($data->$key);
+        
         foreach ($data as $k => $v) {
-            $fields[] = "$k=:$k";
-            $d[":$k"] = $v;
+            if($k!=$this->primaryKey){
+                $fields[] = "$k=:$k";
+                $d[":$k"] = $v;
+            }elseif(!empty($v)) {
+                $fields[] = "$k=:$k";
+                $d[":$k"] = $v;
+            }
+            
         }
+        /*debug($d);
+        die();*/
         
         if(isset($data->$key) && !empty($data->$key)){
             $sql = 'UPDATE '.$this->table.' SET '.implode(',',$fields).' WHERE '.$key.'=:'.$key;
@@ -139,7 +147,11 @@ class Model{
             $action = 'update';
 
         }else{
-            $sql = 'INSERT INTO '.$this->table.' SET type="'.$type.'",'.implode(',',$fields);
+            if($type == null){
+                $sql = 'INSERT INTO '.$this->table.' SET '.implode(',',$fields);
+            }else {
+                $sql = 'INSERT INTO '.$this->table.' SET type="'.$type.'",'.implode(',',$fields);
+            }
             //$this->Session->setFlash('Le contenu a bien été ajouté');
             $action = 'insert';
 

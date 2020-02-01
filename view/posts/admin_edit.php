@@ -15,6 +15,8 @@
     <?php echo $this->Form->input('content', 'Contenu', array('type' => 'textarea')); ?>
     <?php //echo $this->Form->input('content', 'Contenu', array('type' => 'textarea', ' rows'=>5, ' cols'=>10)); ?>
     <?php echo $this->Form->input('online', 'En ligne', array('type' => 'checkbox')); ?>
+    <?php //echo $this->Form->input('online2', 'En ligne2', array('type' => 'checkbox'), array() ); ?>
+
 
     <div class="actions">
         <hr class="mb-4">

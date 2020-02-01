@@ -63,10 +63,16 @@ class PostsController extends Controller {
         if($this->request->data){
             if($this->Post->validates($this->request->data)){
                 $datapost = $this->request->data;
-                $this->Post->save($this->request->data, 'post');
+
+                $this->request->data->type = 'post';
+                $this->Post->save($this->request->data);
                 $article = '<a target="_blank" href="'.Router::url("posts/view/id:{$this->Post->id}/slug:{$datapost->slug}").'">Voir l\'article<a>';
                 $this->Session->setFlash("Le contenu à bien été modifié : $article");
-                $id = $this->Post->id;
+                //$id = $this->Post->id;
+                $this->redirect('admin/posts/index');
+
+
+
             }else {
                 $this->Session->setFlash('Merci de corriger vos informations','danger');
             }
@@ -82,6 +88,7 @@ class PostsController extends Controller {
     }
 
 
+
     /**
      * Permet de supprimer un article
      */
@@ -89,6 +96,14 @@ class PostsController extends Controller {
         $this->loadModel('Post');
         $this->Post->delete($id);
         $this->Session->setFlash('Le contenu à bien été supprimée');
+
+        $this->redirect('admin/posts/index');
+    }
+
+    function admin_online($id){
+        $this->loadModel('Post');
+        $this->Post->save(array('online' => '0', 'id' => '3'));
+        //$this->Session->setFlash('Le contenu à bien été édité');
 
         $this->redirect('admin/posts/index');
     }
