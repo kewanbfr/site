@@ -9,7 +9,7 @@ class Form{
     }
 
     public function input($name, $label, $options=array()){
-        debug($this->errors);
+        //debug($this->errors);
         if(!isset($this->controller->request->data->$name)){
             $value = '';
         }else {
