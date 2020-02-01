@@ -62,8 +62,10 @@ class PostsController extends Controller {
 
         if($this->request->data){
             //if($this->Post->validates($this->request->data)){
-                $this->Post->save($this->request->data, 'page');
-                $this->Session->setFlash('Le contenu à bien été modifié');
+                $datapost = $this->request->data;
+                $this->Post->save($this->request->data, 'post');
+                $article = '<a href="'.Router::url("posts/view/id:{$this->Post->id}/slug:{$datapost->slug}").'">Voir l\'article<a>';
+                $this->Session->setFlash("Le contenu à bien été modifié : $article");
                 $id = $this->Post->id;
             /*}else {
                 $this->Session->setFlash('Merci de corriger vos informations','danger');
