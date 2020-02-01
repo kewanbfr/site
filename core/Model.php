@@ -127,17 +127,27 @@ class Model{
         $fields = array();
         $d = array();
         
+        //debug($data);
+
         foreach ($data as $k => $v) {
             if($k!=$this->primaryKey){
                 $fields[] = "$k=:$k";
                 $d[":$k"] = $v;
             }elseif(!empty($v)) {
-                $fields[] = "$k=:$k";
-                $d[":$k"] = $v;
+                /*if($k = 'publicated'){
+                    $fields[] = "online=2";
+                    $d['online'] = 2;
+                    debug($k);
+                }else {*/
+                    $fields[] = "$k=:$k";
+                    $d[":$k"] = $v;
+
+                //}
+                
             }
             
         }
-        /*debug($d);
+        /*ebug($d);
         die();*/
         
         if(isset($data->$key) && !empty($data->$key)){

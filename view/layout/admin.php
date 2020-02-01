@@ -12,6 +12,7 @@
 </head>
 <body>
 
+
     <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">---->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" >
         <a class="navbar-brand" href="<?= Router::url('admin/posts/index'); ?>">Administration</a>
@@ -30,7 +31,10 @@
             </li>    
             <li class="nav-item">
                 <a class="nav-link" href="<?= Router::url('admin/pages/index'); ?>">Pages</span></a>
-            </li>           
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= Router::url('/'); ?>">Accès à Mon Site</span></a>
+            </li>   
 
             </ul>
             <form class="form-inline my-2 my-lg-0">

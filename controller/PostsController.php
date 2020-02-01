@@ -59,13 +59,29 @@ class PostsController extends Controller {
     function admin_edit($id = null){
         $this->loadModel('Post');
         $d['id'] = '';
+        $datapost = $this->request->data;
+        //debug($this->request->data);
 
-        if($this->request->data){
-            if($this->Post->validates($this->request->data)){
-                $datapost = $this->request->data;
+        if($datapost){
+            if($this->Post->validates($datapost)){
+                $datapost->type = 'post';
 
-                $this->request->data->type = 'post';
-                $this->Post->save($this->request->data);
+                if($datapost->online == 1){
+                    $datapost->publicated = NULL;
+                    
+                }else if(isset($datapost->publicated)) {
+                    if($datapost->publicated != 'aucune' && $datapost->publicated != NULL && $datapost->publicated != ''){
+                        $datapost->online = 2;
+
+                    }else {
+                        $datapost->publicated = NULL;
+
+                    }
+
+
+                }
+                //debug($datapost);
+                $this->Post->save($datapost);
                 $article = '<a target="_blank" href="'.Router::url("posts/view/id:{$this->Post->id}/slug:{$datapost->slug}").'">Voir l\'article<a>';
                 $this->Session->setFlash("Le contenu à bien été modifié : $article");
                 //$id = $this->Post->id;

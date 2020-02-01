@@ -16,8 +16,8 @@
         <?php foreach ($posts as $k => $v) :?>
             <tr>
                 <td><?= $v->id; ?></td>
-                <?php if($v->online == 1){ $color = 'success'; }elseif ($v->online == 2) { $color = 'primary'; }else { $color == 'danger';} ?>
-                <?php if($v->online == 1){ $name = 'En ligne'; }elseif ($v->online == 2) { $name = 'Publication le : '.$v->publicated; }else { $name == 'Hors ligne';} ?>
+                <?php $color = 'danger'; if($v->online == 1){ $color = 'success'; }elseif ($v->online == 2) { $color = 'primary'; }else { $color == 'danger';} ?>
+                <?php $name = 'Hors Ligne'; if($v->online == 1){ $name = 'En ligne'; }elseif ($v->online == 2) { $name = 'Publication programmée le : '.$v->publicated; }elseif($v->draft == 1) { $name == 'Brouillon';}else {$name == 'Hors ligne';} ?>
 
                 <!--<td><span class="badge badge-<?php /*echo ($v->online == 1)?'success':'danger'; ?>"><a onclick="return confirm('Voulez vous vraiment Passer ce contenu <?php echo ($v->online == 1)?'Hors ligne':'En ligne'; ?> ?');" href="<?= Router::url('admin/posts/online/'.$v->id); ?>"><?php echo ($v->online == 1)?'En ligne':'Hors ligne';*/ ?>/a></span></td>--->
                 <td><span class="badge badge-<?php echo $color; ?>"><?php echo $name; ?></span></td>

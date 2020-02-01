@@ -23,6 +23,7 @@ class Form{
         }
         if(!isset($this->controller->request->data->$name)){
             $value = '';
+
         }else {
             $value = $this->controller->request->data->$name;
         }
@@ -44,17 +45,26 @@ class Form{
                     if(!isset($options['type'])){
                         $html .= '
                         <div class="form-group">
-                        <label class="form-label" for="input'.$name.'">'.$label.'</label>
+                        <label class="form-label" id="input'.$name.'label" for="input'.$name.'">'.$label.'</label>
                         <div class="input">';
-                        $html .= '<input class="form-control'.$classError.'" type="text" name="'.$name.'" id="input'.$name.'" value="'.$value.'" '.$attr.'>'.$alertInfos.'</div>';
+                        $html .= '<input class="form-control'.$classError.'" type="text" name="'.$name.'" id="input'.$name.'" value="'.$value.'" '.$attr.'>'.$alertInfos.'</div>
+                        </div>';
                     }elseif($options['type'] == 'textarea'){
                         $html .= '<div class="form-group">
                         <label class="form-label" for="input'.$name.'">'.$label.'</label>
                         <div class="input">';
-                        $html .= '<textarea class="form-control'.$classError.'" '.$attrExtr.' name="'.$name.'" id="input'.$name.'" '.$attr.'" >'.$value.'</textarea>'.$alertInfos.'</div>';
+                        $html .= '<textarea class="form-control'.$classError.'" '.$attrExtr.' name="'.$name.'" id="input'.$name.'" '.$attr.'" >'.$value.'</textarea>'.$alertInfos.'</div>
+                        </div>';
 
                     }elseif($options['type'] == 'submit'){
                         $html .= '<div class="input"><button type="submit" '.$attr.'>'.$label.'</button>';
+                    }elseif($options['type'] == 'date'){
+                        $html .= '
+                        <div class="form-group">
+                        <label class="form-label" id="input'.$name.'label" for="input'.$name.'">'.$label.'</label>
+                        <div class="input">';
+                        $html .= '<input class="form-control'.$classError.'" type="date" name="'.$name.'" id="input'.$name.'" value="'.$value.'" '.$attr.'>'.$alertInfos.'</div>
+                        </div>';
                     }elseif($options['type'] == 'checkbox'){
                         /*$html .= '<div class="checkbox mb-3">
                             <label>
@@ -64,13 +74,13 @@ class Form{
 
                         $html .= '
                         <div class="form-group form-check">
-                        <label class="form-check-label'.$classError.'" for="'.$name.'">
+                        <label class="form-check-label'.$classError.'" id="'.$name.'label" for="'.$name.'">
                         <input type="hidden" name="'.$name.'"  value="0"><input '.$attrExtr.' class="form-check-input" '.$attr.' id="'.$name.'" class="form-check-label" type="checkbox" name="'.$name.'" id="checkbox'.$name.'" value="1" '.(empty($value)?'':'checked').'>'.$label.'
                         </label>
                         </div>';
                     }
                     //$html .= '</div></div>';
-                    $html .= '</div>';
+                    $html .= '';
         return $html;
     }
 }
