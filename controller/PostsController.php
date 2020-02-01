@@ -61,21 +61,22 @@ class PostsController extends Controller {
         $d['id'] = '';
 
         if($this->request->data){
-            //if($this->Post->validates($this->request->data)){
+            if($this->Post->validates($this->request->data)){
                 $datapost = $this->request->data;
                 $this->Post->save($this->request->data, 'post');
-                $article = '<a href="'.Router::url("posts/view/id:{$this->Post->id}/slug:{$datapost->slug}").'">Voir l\'article<a>';
+                $article = '<a target="_blank" href="'.Router::url("posts/view/id:{$this->Post->id}/slug:{$datapost->slug}").'">Voir l\'article<a>';
                 $this->Session->setFlash("Le contenu à bien été modifié : $article");
                 $id = $this->Post->id;
-            /*}else {
+            }else {
                 $this->Session->setFlash('Merci de corriger vos informations','danger');
-                
-            }*/
+            }
+        }else {
+            if($id){
+                $this->request->data = $this->Post->findFirst(array('conditions' => array('id'=>$id)));
+                $d['id'] = $id;
+            }
         }
-        if($id){
-            $this->request->data = $this->Post->findFirst(array('conditions' => array('id'=>$id)));
-            $d['id'] = $id;
-        }
+        
         $this->set($d);
         
     }

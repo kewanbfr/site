@@ -10,18 +10,24 @@ class Post extends Model{
         'slug' => array(
             'rule' => '([a-z0-9\-]+)',
             'message' => "L'url n'est pas valide"
+        ),
+        'content' => array(
+            'rule' => 'notEmpty',
+            'message' => 'Vous devez remplir le contenu'
         )
     );
 
     function validates($data){
         $errors = array();
         foreach ($this->validate as $k => $v) {
-            if(isset($data->$k)){
+            if(!isset($data->$k)){
                 $errors[$k] = $v['message'];
             }else {
-                if($v['rule'] == 'notEmpty' && empty($data->$k)){
+                if($v['rule'] == 'notEmpty'){
+                    if(empty($data->$k)){
                     $errors[$k] = $v['message'];
-                }elseif(preg_match('/^'.$v['rule'].'$/', $data->$k)){
+                    }
+                }elseif(!preg_match('/^'.$v['rule'].'$/', $data->$k)){
                     $errors[$k] = $v['message'];
                 }
             }
@@ -32,9 +38,9 @@ class Post extends Model{
         }
         if(empty($errors)){
             return true;
-        }else {
+        }//else {
             return false;
-        }
+        //}
     }
     
 }
