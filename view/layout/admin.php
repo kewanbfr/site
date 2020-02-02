@@ -137,7 +137,7 @@
     <script type="text/javascript" src="<?php echo Router::webroot('js/ckeditor/build/ckeditor.js'); ?>"></script>
 
     <script>ClassicEditor
-			.create( document.querySelector( '.editor' ), {
+			.create( document.querySelector( '.editortexarea' ), {
 				
 				toolbar: {
 					items: [
