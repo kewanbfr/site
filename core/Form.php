@@ -53,7 +53,7 @@ class Form{
                         $html .= '<div class="form-group">
                         <label class="form-label" for="input'.$name.'">'.$label.'</label>
                         <div class="input">';
-                        $html .= '<textarea class="form-control'.$classError.'" '.$attrExtr.' name="'.$name.'" id="input'.$name.'" '.$attr.'" >'.$value.'</textarea>'.$alertInfos.'</div>
+                        $html .= '<textarea class="form-control'.$classError.'" '.$attrExtr.' name="'.$name.'" id="textarea'.$name.'" '.$attr.'" >'.$value.'</textarea>'.$alertInfos.'</div>
                         </div>';
 
                     }elseif($options['type'] == 'submit'){

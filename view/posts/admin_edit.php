@@ -12,7 +12,10 @@
     <?php echo $this->Form->input('slug', 'Url') ?>
     <?php echo $this->Form->input('id', 'hidden'); ?>
 
-    <?php echo $this->Form->input('content', 'Contenu', array('type' => 'textarea')); ?>
+    
+
+
+    <?php echo $this->Form->input('content', 'Contenu', array('type' => 'textarea'), array('class' => 'wysiwyg')); ?>
     <?php //echo $this->Form->input('content', 'Contenu', array('type' => 'textarea', ' rows'=>5, ' cols'=>10)); ?>
     <?php echo $this->Form->input('draft', 'Brouillon ?', array('type' => 'checkbox') ); ?>
     <?php echo $this->Form->input('online', 'En ligne', array('type' => 'checkbox') ); ?>
@@ -26,7 +29,7 @@
         <?php echo $this->Form->input('envoyer', 'Envoyer', array('type' => 'submit', ' class' => 'btn btn-primary btn-lg', ' style' => 'display: block; margin-left: auto; margin-right: auto')); ?>
     </div>
     <script>
-    document.getElementById('draft').checked = true;
+    //document.getElementById('draft').checked = true;
     document.getElementById('online').checked = true;
     document.getElementById('online').style.display = 'none';
     document.getElementById('onlinelabel').style.display = 'none';

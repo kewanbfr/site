@@ -89,6 +89,7 @@ class Router{
      * Url
      */
     static function url($url){
+        trim($url,'/');
         foreach(self::$routes as $v){
             if(preg_match($v['origin'], $url, $match)){
                 //debug($match);
@@ -105,6 +106,11 @@ class Router{
                 $url = str_replace($v,$k,$url);
             }
         }
+        return BASE_URL.'/'.$url;
+    }
+
+    static function webroot($url){
+        trim($url,'/');
         return BASE_URL.'/'.$url;
     }
 
