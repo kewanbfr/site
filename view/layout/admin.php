@@ -21,7 +21,7 @@
 
     <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">---->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" >
-        <a class="navbar-brand" href="<?= Router::url('admin/posts/index'); ?>">Administration</a>
+        <a class="navbar-brand" href="<?= Router::url('admin'); ?>">Administration</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +30,7 @@
             <ul class="navbar-nav mr-auto">
             
             <li class="nav-item active">
-                <a class="nav-link" href="<?= BASE_URL; ?>">Accueil</span></a>
+                <a class="nav-link" href="<?= Router::url('admin'); ?>">Accueil</span></a>
             </li> 
             <li class="nav-item">
                 <a class="nav-link" href="<?= Router::url('admin/posts/index'); ?>">Articles</span></a>
@@ -55,7 +55,6 @@
     </form>--->
 
     <div class="container" style="padding-top:60px;">
-        <br>
         <?php echo $this->Session->flash(); ?>
         <?php echo $content_for_layout; ?>
     </div>
@@ -66,66 +65,8 @@
 
     <script type="text/javascript" src="http://localhost/js/jquery.min.js"></script>
     <!--<script src="ckeditor.js"></script>--->
-    <script type="text/javascript" src="<?php echo Router::webroot('js/ckeditor/build/ckeditor.js'); ?>"></script>
 
-    <script>ClassicEditor
-			.create( document.querySelector( '.' ), {
-				
-				toolbar: {
-					items: [
-						'heading',
-						'fontFamily',
-						'pageBreak',
-						'|',
-						'bold',
-						'italic',
-						'underline',
-						'fontColor',
-						'link',
-						'bulletedList',
-						'numberedList',
-						'|',
-						'indent',
-						'outdent',
-						'|',
-						'imageUpload',
-						'CKFinder',
-						'blockQuote',
-						'insertTable',
-						'mediaEmbed',
-						'undo',
-						'redo'
-					]
-				},
-				language: 'fr',
-				image: {
-					toolbar: [
-						'imageTextAlternative',
-						'imageStyle:full',
-						'imageStyle:side'
-					]
-				},
-				table: {
-					contentToolbar: [
-						'tableColumn',
-						'tableRow',
-						'mergeTableCells'
-					]
-				},
-				licenseKey: '',
-				
-			} )
-			.then( editor => {
-				window.editor = editor;
-		
-				
-				
-				
-			} )
-			.catch( error => {
-				console.error( error );
-			} );
-	</script>
+    
     <script type="text/javascript" src="http://localhost/js/docs.min.js"></script>
     <script type="text/javascript" src="http://localhost/js/bootstrap.bundle.min.js"></script>
 </html>

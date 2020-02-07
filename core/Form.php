@@ -57,7 +57,7 @@ class Form{
                         </div>';
 
                     }elseif($options['type'] == 'submit'){
-                        $html .= '<div class="input"><button type="submit" '.$attr.'>'.$label.'</button>';
+                        $html .= '<div class="input"><button type="button" '.$attr.'>'.$label.'</button>';
                     }elseif($options['type'] == 'date'){
                         $html .= '
                         <div class="form-group">

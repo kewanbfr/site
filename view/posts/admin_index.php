@@ -24,15 +24,18 @@
 
                 <td><?= $v->name; ?></td>
                 <td>
-                <a target="_blank" href="<?php echo Router::url("posts/view/id:{$v->id}/slug:{$v->slug}"); ?>">Voir<a>&nbsp;|
+                <a target="_blank" href="<?php echo Router::url("posts/view/id:{$v->id}/slug:{$v->slug}"); ?>">Voir</a>&nbsp;|
                 <!--<a href="<?= Router::url('admin/posts/edit/'.$v->id); ?>">Voir</a>--->
 
                 <a href="<?= Router::url('admin/posts/edit/'.$v->id); ?>">Editer</a>&nbsp;|
                 <a onclick="return confirm('Voulez vous vraiment supprimer ce contenu');" href="<?= Router::url('admin/posts/delete/'.$v->id); ?>">Supprimer</a>
+                
+                
 
                 </td>
             </tr>
         <?php endforeach ?>
     </tbody>
 </table>
-<a href="<?php echo Router::url('admin/posts/edit'); ?>" class="btn btn-primary">Ajouter un article</a>
+<button href="<?php echo Router::url('admin/posts/edit'); ?>" type="button" class="btn">Ajouter un article</button>
+

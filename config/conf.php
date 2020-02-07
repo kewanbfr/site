@@ -30,6 +30,8 @@ class Conf{
 }
 
 Router::prefix('cockpit', 'admin');
+Router::prefix('pit', 'admin/index.php');
+
 
 //Router::connect('posts/:slug-:id', 'posts/view/id:(?P<id>[0-9])/slug:(?P<slug>[a-z0-9\-]+)');
 //Router::connect('/', 'posts/index');

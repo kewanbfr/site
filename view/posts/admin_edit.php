@@ -26,7 +26,9 @@
 
     <div class="actions">
         <hr class="mb-4">
-        <?php echo $this->Form->input('envoyer', 'Envoyer', array('type' => 'submit', ' class' => 'btn btn-primary btn-lg', ' style' => 'display: block; margin-left: auto; margin-right: auto')); ?>
+        <?php //echo $this->Form->input('envoyer', 'Envoyer', array('type' => 'submit', ' class' => 'btn btn-primary btn-lg', ' style' => 'display: block; margin-left: auto; margin-right: auto')); ?>
+        <?php echo $this->Form->input('envoyer', 'Envoyer', array('type' => 'submit', ' class' => '')); ?>
+
     </div>
     <script>
     //document.getElementById('draft').checked = true;
